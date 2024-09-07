@@ -15,22 +15,20 @@
 	<!--Barra superior de navegación login-->
     <header class="navbarlogin" id="navbarlogin">
         <a href="">
-        	<h2 class="logo_provicional">END</h2>
-            <img class="navbarlogin-logo" src="">
+            <img class="navbarlogin-logo" src="assets/img/logo.png">
         </a>
-        <!--<div class="navbarlogin-options">
+        <div class="navbarlogin-options">
         	<a href="index.php">Inicio</a>
-        </div>-->
+        </div>
     </header>
 
     <!--Barra superior de navegación register-->
     <header class="navbarregister" id="navbarregister">
-    	<!--<div class="navbarregister-options">
+    	<div class="navbarregister-options">
         	<a href="index.php">Inicio</a>
-        </div>-->
+        </div>
         <a href="">
-        	<h2 class="logo_provicional">END</h2>
-            <img class="navbarregister-logo" src="">
+            <img class="navbarregister-logo" src="assets/img/logo.png">
         </a>
     </header>
 

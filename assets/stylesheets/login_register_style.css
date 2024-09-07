@@ -31,21 +31,6 @@ body{
 	height: 70px;
 }
 
-.logo_provicional{
-	margin-left: 14px;
-	height: 70px;
-	font-family: 'Playfair Display', serif;
-	color: #ECDFCC;
-	/*background: linear-gradient(90deg, #0069a6, #00C8E7);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	margin: 0;
-	line-height: 1.45;*/
-	text-transform: uppercase;
-	font-weight: bold;
-	font-size: 50px;
-}
-
 .navbarlogin-options{
 	display: flex;
 	align-items: center;
@@ -54,7 +39,7 @@ body{
 }
 
 .navbarlogin-options a{
-	color: #ffffff;
+	color: #ECDFCC;
 	font-size: 20px;
 	text-transform: uppercase;
 	font-weight: bold;
@@ -63,9 +48,10 @@ body{
 }
 
 .navbarlogin a:hover{
-	background: linear-gradient(90deg, #fd2d00, #da027f);
+	color: #6A9C89;
+	/*background: linear-gradient(90deg, #fd2d00);
 	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+	-webkit-text-fill-color: transparent;*/
 }
 
 /*Barra superior de navegación responsive para tablets*/
@@ -125,7 +111,7 @@ body{
 }
 
 .navbarregister-options a{
-	color: #ffffff;
+	color: #ECDFCC;
 	font-size: 20px;
 	text-transform: uppercase;
 	font-weight: bold;
@@ -134,9 +120,10 @@ body{
 }
 
 .navbarregister-options a:hover{
-	background: linear-gradient(90deg, #fd2d00, #da027f);
+	color: #6A9C89;
+	/*background: linear-gradient(90deg, #fd2d00, #da027f);
 	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+	-webkit-text-fill-color: transparent;*/
 }
 
 /*Barra superior de navegación responsive para tablets*/
