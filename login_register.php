@@ -50,7 +50,7 @@
 			<p>¿Aún no tienes una cuenta? <a href="#" id="go-to-register"> Crea una</a></p>
 			<form method="post" action="login.php">
 				<div class="login-inputcontainer">
-					<input type="text" name="username" required>
+					<input type="text" name="email" required>
 					<label class="lbl">
 						<span class="text-span">Correo</span>
 					</label>
@@ -69,13 +69,6 @@
 			<h2>Crea una cuenta nueva</h2>
 			<p>¿Ya tienes una cuenta? <a href="#" id="go-to-login"> Inicia sesión</a></p>
 			<form method="post">
-				<!--Obtener el mensaje de error-->
-				<div class="register-errormessage" <?php if (empty($register_error_message)) echo 'style="display: none;"'; ?>>
-                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" class="alert_icon" viewBox="0 0 512 512">
-                        <path fill="#99a3a4" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/>
-                    </svg>
-                    <p class="error_message_text"><?php echo $register_error_message; ?></p>
-                </div>
 				<div class="login-inputcontainer uno">
 					<input type="email" name="email" required>
 					<label class="lbl">
@@ -114,12 +107,6 @@
 </html>
 
 <script>
-//Verificar si $error_message está vacío
-<?php if (!empty($error_message)) : ?>
-	//Si $error_message no está vacío ejecutará la función goToRegister
-	goToRegister();
-<?php endif; ?>
-
 //Función para ir a register
 function goToRegister(){
     document.querySelector('.background-loginregister').classList.remove('translate-to-login');
