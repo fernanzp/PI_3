@@ -1,0 +1,17 @@
+.header-nav {
+    position: relative;
+    display: inline-block;
+}
+
+.letter {
+    position: absolute;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.letter.first {
+    opacity: 1;
+}
+
+.letter.second {
+    opacity: 0;
+}
