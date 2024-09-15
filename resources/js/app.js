@@ -17,6 +17,44 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+//boton donacion
+function setAmount(amount) {
+  document.getElementById('donationAmount').value = amount;
+}
+
+function validateAmount() {
+  const input = document.getElementById('donationAmount');
+  const tooltip = document.getElementById('tooltip');
+  const value = parseFloat(input.value);
+
+  // Verificar si la cantidad es menor a 5 o no es un número válido
+  if (value < 5 || isNaN(value)) {
+      tooltip.style.display = 'block'; // Mostrar el globo de texto si el valor es menor a 5
+  } else {
+      tooltip.style.display = 'none'; // Ocultar el globo de texto si es mayor o igual a 5
+  }
+}
+
+// Función para ocultar el tooltip cuando se haga clic en cualquier parte de la página
+document.addEventListener('click', function () {
+  const tooltip = document.getElementById('tooltip');
+  tooltip.style.display = 'none';
+});
+
+// Evitar que el tooltip desaparezca cuando se hace clic en el botón o en el input
+document.getElementById('donationAmount').addEventListener('click', function (event) {
+  event.stopPropagation();
+});
+
+document.getElementById('acceptBtn').addEventListener('click', function(event) {
+  event.stopPropagation(); // Evitar que se cierre inmediatamente el tooltip
+  validateAmount(); // Validar la cantidad al hacer clic en el botón Aceptar
+  
+});
+
+
+
+
 //login
 //Función para ir a register
 function goToRegister(){
@@ -93,3 +131,47 @@ document.getElementById('go-to-login').addEventListener('click', function() {
   // Actualizar el estado de la animación
   isRegisterShown = false;
 });
+
+
+
+
+
+
+
+        // Función para establecer el valor en el input
+        function setValue(value) {
+            document.getElementById('inputNumber').value = value;
+            document.getElementById('alerta').style.display = 'none'; // Ocultar la alerta si estaba visible
+        }
+
+        // Función para enviar el valor
+        function enviar(event) {
+            event.stopPropagation(); // Evitar que el clic en el botón "Enviar" cierre inmediatamente la alerta
+            const valor = document.getElementById('inputNumber').value;
+            const alerta = document.getElementById('alerta');
+
+            if (valor < 5) {
+                // Mostrar la alerta si el valor es menor a 5
+                alerta.style.display = 'block';
+            } else {
+                // Ocultar la alerta y procesar el envío
+                alerta.style.display = 'none';
+                alert('Enviado correctamente: ' + valor);
+            }
+        }
+
+        // Ocultar la alerta al hacer clic en cualquier parte de la página
+        document.addEventListener('click', function(event) {
+            const alerta = document.getElementById('alerta');
+            const input = document.getElementById('inputNumber');
+            if (alerta.style.display === 'block') {
+                // Si el click no es en el input o en el botón de enviar, ocultar la alerta
+                if (!input.contains(event.target)) {
+                    alerta.style.display = 'none';
+                }
+            }
+        });
+
+
+
+

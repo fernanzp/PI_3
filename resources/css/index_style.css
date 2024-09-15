@@ -283,3 +283,38 @@ p {
     max-width: 15rem;
     /* margin-bottom: 2rem; */
 }
+
+
+
+.header-nav {
+    position: relative;
+    display: inline-block;
+}
+
+.letter {
+    position: absolute;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.letter.first {
+    opacity: 1;
+}
+
+.letter.second {
+    opacity: 0;
+}
+
+
+/* alerta de donacion */
+.tooltip {
+    position: absolute;
+    top: -30px; /* Ajusta la posición del tooltip para que quede justo arriba del input */
+    left: 0;
+    background-color: #f44336;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1;
+}
