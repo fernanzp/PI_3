@@ -67,7 +67,7 @@
 </footer>
 
 {{-- permite añadir mas contenido a la pagina principal --}}
-{{-- @stack('js') --}}
+@yield('js')
 <script src="../resources/js/app.js"></script>
 </body>
 </html>

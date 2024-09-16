@@ -27,4 +27,5 @@ Route::get('/', HomeController::class);
 
 Route::get('/login', [HomeController::class, 'login_register']);
 
-Route::get('/numero/{numero}', [HomeController::class, 'numero']);
+// Route::get('/numero/{numero}', [HomeController::class, 'numero']);
+

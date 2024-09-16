@@ -3,6 +3,44 @@
 
 @section('title', 'END Non-Disparity')
 
+    {{-- añadir mas contenido a la pagina principal --}}
+    {{-- @section('css')
+    <link rel="stylesheet" href="../resources/css/index_style.css">
+    <link rel="stylesheet" href="../resources/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    @endsection
+    
+
+    --}}
+
+
+    @section('js')
+    <script src="https://www.paypal.com/sdk/js?client-id={{env('PAYPAL_CLIENT_ID')}}&currency=MXN"></script>
+
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions){
+                return actions.order.create({
+                    application_context: {
+                        shipping_preference: 'NO_SHIPPING'
+                    },
+                    purchase_units: [{
+                        amount: {
+                            value: `${document.getElementById('donationAmount').value}`
+                        }
+                    }]
+                })
+            },
+            onApprove: function(data, actions){
+                return actions.order.capture().then(function(details){
+                    alert('Transacción completada por ' + details.payer.name.given_name)
+                })
+            }
+        }).render('#paypal-button-container')
+    </script>
+
+    @endsection
+
 @section('content')
 
     <div class="video">
@@ -42,7 +80,10 @@
                 </div>
                 <input type="number" id="donationAmount" placeholder="Ingrese cantidad">
             </div>
-            <button class="boton-aceptar" id="acceptBtn">Aceptar</button>
+            <br>
+            <div class="pago">
+                <div id="paypal-button-container"></div>
+            </div>
         </div>
     </section>
 
@@ -55,5 +96,6 @@
         </div>
     </section>
 
+    @
 
 @endsection
