@@ -5,12 +5,9 @@
     <link rel="stylesheet" href="../resources/css/index_style.css">
     <link rel="stylesheet" href="../resources/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
     {{-- permite añadir mas contenido a la pagina principal --}}
     {{-- @stack('css') --}}
-
-    @yield('css')
-
+    {{-- @yield('css') --}}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
 </head>

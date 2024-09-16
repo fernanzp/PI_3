@@ -318,3 +318,65 @@ p {
     white-space: nowrap;
     z-index: 1;
 }
+
+
+
+/* Estilos del modal de paypal */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Mantenerse en lugar fijo */
+    z-index: 1; /* Asegurarse de que esté sobre otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Alto completo */
+    overflow: auto; /* Agregar barra de desplazamiento si es necesario */
+    background-color: rgb(0,0,0); /* Fondo negro */
+    background-color: rgba(0,0,0,0.4); /* Fondo negro con opacidad */
+}
+
+/* Contenido del modal */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Centrando el modal en la pantalla */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Ancho del modal */
+}
+
+/* El botón de cerrar */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+/* header estilo */
+.header-nav {
+    position: relative;
+    display: inline-block;
+}
+
+.letter {
+    position: absolute;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.letter.first {
+    opacity: 1;
+}
+
+.letter.second {
+    opacity: 0;
+}

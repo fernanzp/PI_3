@@ -1,133 +1,16 @@
 {{-- trae el contenido del footer y el header --}}
 @extends('layouts.app')
 
+{{-- titulo de la pagina --}}
 @section('title', 'END Non-Disparity')
 
-{{-- añadir mas contenido a la pagina principal --}}
-{{-- @section('css')
-<link rel="stylesheet" href="../resources/css/index_style.css">
-<link rel="stylesheet" href="../resources/css/styles.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-@endsection
---}}
-
-@section('css')
-
-    <style>
-        /* Estilos del modal */
-.modal {
-    display: none; /* Oculto por defecto */
-    position: fixed; /* Mantenerse en lugar fijo */
-    z-index: 1; /* Asegurarse de que esté sobre otros elementos */
-    left: 0;
-    top: 0;
-    width: 100%; /* Ancho completo */
-    height: 100%; /* Alto completo */
-    overflow: auto; /* Agregar barra de desplazamiento si es necesario */
-    background-color: rgb(0,0,0); /* Fondo negro */
-    background-color: rgba(0,0,0,0.4); /* Fondo negro con opacidad */
-}
-
-/* Contenido del modal */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* Centrando el modal en la pantalla */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Ancho del modal */
-}
-
-/* El botón de cerrar */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-    </style>
-
-    @endsection
-
-
+{{-- logica de paypal (js) --}}
 @section('js')
 <script src="https://www.paypal.com/sdk/js?client-id={{env('PAYPAL_CLIENT_ID')}}&currency=MXN"></script>
-
-<script>
-    // Variable global para almacenar la cantidad ingresada
-    let donationAmount = 0;
-
-    // Función para actualizar la variable global con la cantidad ingresada
-    function updateDonationAmount() {
-        const amount = parseFloat(document.getElementById('donationAmount').value) || 0;
-        donationAmount = parseFloat(amount.toFixed(2));
-    }
-
-    // Función para mostrar el modal
-    function showModal() {
-        // Actualizar la cantidad ingresada
-        updateDonationAmount();
-
-        // Verificar si la cantidad es menor a 5
-        if (donationAmount < 5) {
-            alert('Por favor, ingrese una cantidad mayor o igual a $5');
-            return; // No abrir el modal
-        }
-
-        // Si la cantidad es válida, mostrar el modal
-        document.getElementById('paypalModal').style.display = 'block';
-
-        // Limpiar el contenedor del botón de PayPal antes de renderizarlo nuevamente
-        const paypalButtonContainer = document.getElementById('paypal-button-container');
-        paypalButtonContainer.innerHTML = '';
-
-        paypal.Buttons({
-            style: {
-                color: 'blue',
-                shape: 'pill',
-                label: 'pay',
-            },
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    application_context: {
-                        shipping_preference: 'NO_SHIPPING'
-                    },
-                    purchase_units: [{
-                        amount: {
-                            value: `${donationAmount}`
-                        }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    alert('Transacción completada por ' + details.payer.name.given_name);
-                });
-            }
-        }).render('#paypal-button-container');
-    }
-
-    function closeModal() {
-        document.getElementById('paypalModal').style.display = 'none';
-    }
-
-    // Escuchar cambios en el campo de entrada para actualizar la cantidad ingresada
-    document.getElementById('donationAmount').addEventListener('input', updateDonationAmount);
-</script>
-
-
-
-
-
+<script src="../resources/js/paypal.js"></script>
 @endsection
 
+{{-- contenido de la pagina --}}
 @section('content')
 
 <div class="video">
@@ -140,7 +23,6 @@
 <div class="titulo-donativo">
     <h2>Donaciones</h2>
 </div>
-
 <section class="cont-donativo">
     <div class="cont-info">
         <h2>Temas referentes</h2>
@@ -174,7 +56,7 @@
     </div>
 </section>
 
-<!-- Modal -->
+<!-- Modal de paypal-->
 <div id="paypalModal" class="modal" style="display: none;">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -185,10 +67,5 @@
 <div class="titulo-info">
     <h2>¿Por qué confiar en nosotros?</h2>
 </div>
-
-<section>
-    <div>
-    </div>
-</section>
 
 @endsection
