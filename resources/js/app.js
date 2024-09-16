@@ -22,35 +22,7 @@ function setAmount(amount) {
   document.getElementById('donationAmount').value = amount;
 }
 
-function validateAmount() {
-  const input = document.getElementById('donationAmount');
-  const tooltip = document.getElementById('tooltip');
-  const value = parseFloat(input.value);
 
-  // Verificar si la cantidad es menor a 5 o no es un número válido
-  if (value < 5 || isNaN(value)) {
-      tooltip.style.display = 'block'; // Mostrar el globo de texto si el valor es menor a 5
-  } else {
-      tooltip.style.display = 'none'; // Ocultar el globo de texto si es mayor o igual a 5
-  }
-}
-
-// Función para ocultar el tooltip cuando se haga clic en cualquier parte de la página
-document.addEventListener('click', function () {
-  const tooltip = document.getElementById('tooltip');
-  tooltip.style.display = 'none';
-});
-
-// Evitar que el tooltip desaparezca cuando se hace clic en el botón o en el input
-document.getElementById('donationAmount').addEventListener('click', function (event) {
-  event.stopPropagation();
-});
-
-document.getElementById('acceptBtn').addEventListener('click', function(event) {
-  event.stopPropagation(); // Evitar que se cierre inmediatamente el tooltip
-  validateAmount(); // Validar la cantidad al hacer clic en el botón Aceptar
-  
-});
 
 
 

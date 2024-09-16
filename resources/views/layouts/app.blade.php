@@ -9,6 +9,8 @@
     {{-- permite añadir mas contenido a la pagina principal --}}
     {{-- @stack('css') --}}
 
+    @yield('css')
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
 </head>
