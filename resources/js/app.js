@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
             firstLetter.style.opacity = '1';
             secondLetter.style.opacity = '0';
         }
-    }, 500); // Cambia el intervalo según tus necesidades
+    }, 1500); // Cambia el intervalo según tus necesidades
 });
 
 

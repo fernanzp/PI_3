@@ -30,6 +30,7 @@
                 color: 'blue',
                 shape: 'pill',
                 label: 'pay',
+                label: 'donate',
             },
             createOrder: function(data, actions) {
                 return actions.order.create({
