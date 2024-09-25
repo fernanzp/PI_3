@@ -8,6 +8,8 @@
     <title>@yield('title')</title>
     <link rel="shortcut icon" href="../resources/img/logo.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 <body>
 
