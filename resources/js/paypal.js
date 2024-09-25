@@ -66,12 +66,14 @@ document.querySelector('.boton-aceptar').addEventListener('click', function () {
                             amount: details.purchase_units[0].amount.value,
                             payer_email: details.payer.email_address,
                             payer_name: details.payer.name.given_name + ' ' + details.payer.name.surname
-                        })
+                        }),
+                        
                     })
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            alert('Datos de la transacción guardados correctamente.');
+                            //redireccionar a la página de agradecimiento
+                            window.location.href = './gracias/' + details.id;
                         } else {
                             alert('Error al guardar los datos.');
                         }

@@ -12,3 +12,6 @@ Route::get('/login', [HomeController::class, 'login_register']);
 
 Route::post('/guardar-transaccion', [DonacionController::class, 'guardarTransaccion']);
 
+
+Route::get('/gracias/{transaction_id}', [HomeController::class, 'gracias']);
+

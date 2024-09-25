@@ -10,4 +10,6 @@ class Transaccion extends Model
     use HasFactory;
 
     protected $fillable = ['transaction_id', 'amount', 'payer_email', 'payer_name'];
+
+
 }
