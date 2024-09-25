@@ -1,60 +1,69 @@
-    // Variable global para almacenar la cantidad ingresada
-    let donationAmount = 0;
+// Limitar el input a dos decimales
+document.querySelector('.input').addEventListener('input', function() {
+    let value = this.value;
+    
+    // Verifica si el valor tiene más de dos decimales
+    if (value.includes('.')) {
+        const decimalIndex = value.indexOf('.');
+        const decimals = value.substring(decimalIndex + 1);
 
-    // Función para actualizar la variable global con la cantidad ingresada
-    function updateDonationAmount() {
-        const amount = parseFloat(document.getElementById('donationAmount').value) || 0;
-        donationAmount = parseFloat(amount.toFixed(2));
-    }
-
-    // Función para mostrar el modal
-    function showModal() {
-        // Actualizar la cantidad ingresada
-        updateDonationAmount();
-
-        // Verificar si la cantidad es menor a 5
-        if (donationAmount < 5) {
-            alert('Por favor, ingrese una cantidad mayor o igual a $5');
-            return; // No abrir el modal
+        if (decimals.length > 2) {
+            this.value = parseFloat(value).toFixed(2);  // Redondear a 2 decimales
         }
+    }
+});
 
-        // Si la cantidad es válida, mostrar el modal
-        document.getElementById('paypalModal').style.display = 'block';
+document.querySelectorAll('.boton').forEach(button => {
+    button.addEventListener('click', function() {
+        const amount = this.textContent.replace('$', '');  // Obtener el valor del botón sin el signo de $
+        document.querySelector('.input').value = amount;  // Asignar el valor al input
+    });
+});
 
-        // Limpiar el contenedor del botón de PayPal antes de renderizarlo nuevamente
-        const paypalButtonContainer = document.getElementById('paypal-button-container');
-        paypalButtonContainer.innerHTML = '';
+document.querySelector('.boton-aceptar').addEventListener('click', function() {
+    const cantidad = document.querySelector('.input').value;
+    
+    if (cantidad >= 5) {  // Asegurarse de que la cantidad sea mayor a 5
+        document.getElementById('cantidadDonar').textContent = `$${cantidad}`;  // Actualizar el valor en el modal
 
+        const modal = new bootstrap.Modal(document.getElementById('modalDonacion'));
+        
+        // Limpiar el contenedor de PayPal antes de renderizar el botón
+        const paypalContainer = document.getElementById('paypal-button-container');
+        paypalContainer.innerHTML = '';  // Vaciar el contenedor para evitar duplicados
+
+        // Renderizar los botones de PayPal
         paypal.Buttons({
             style: {
                 color: 'blue',
                 shape: 'pill',
-                label: 'pay',
                 label: 'donate',
             },
             createOrder: function(data, actions) {
                 return actions.order.create({
                     application_context: {
-                        shipping_preference: 'NO_SHIPPING'
+                        shipping_preference: 'NO_SHIPPING'  // No se requiere dirección de envío
                     },
                     purchase_units: [{
                         amount: {
-                            value: `${donationAmount}`
+                            value: cantidad,  // Asignar el valor a donar
                         }
                     }]
                 });
             },
-            onApprove: function(data, actions) {
+            onApprove: function(data, actions) { // Capturar la transacción aprobada
                 return actions.order.capture().then(function(details) {
                     alert('Transacción completada por ' + details.payer.name.given_name);
                 });
+            },
+            onError: function(err) { //error en el pago
+                console.error(err);
+                alert('Ocurrió un error al procesar la transacción. Por favor, intenta de nuevo.');
             }
-        }).render('#paypal-button-container');
-    }
+        }).render('#paypal-button-container');  // Asegurarse de renderizar dentro del contenedor correcto
 
-    function closeModal() {
-        document.getElementById('paypalModal').style.display = 'none';
+        modal.show();  // Mostrar el modal
+    } else {
+        alert('Por favor, ingresa una cantidad válida mayor a 5 antes de continuar.');
     }
-
-    // Escuchar cambios en el campo de entrada para actualizar la cantidad ingresada
-    document.getElementById('donationAmount').addEventListener('input', updateDonationAmount);
+});
